@@ -1,0 +1,152 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IniciarSesion</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-size: cover;
+            height: 100vh;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            background-color: #f9f9f9;
+            max-width: 500px;
+            margin: 0 auto;
+            margin-top: 100px;
+            transition: transform 0.3s;
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+        .card-header {
+            background-color: rgba(0, 0, 0, 0.03);
+            color: #333;
+            border-radius: 15px 15px 0 0;
+            font-weight: bold;
+            font-size: 24px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .form-control {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            padding: 10px;
+            transition: border-color 0.3s;
+        }
+
+            .form-control:focus {
+                border-color: #667eea;
+                box-shadow: none;
+            }
+
+            .form-control:hover {
+                border-color: #667eea;
+            }
+
+        .btn-primary {
+            background-color: #667eea;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+        }
+
+            .btn-primary:hover {
+                background-color: #764ba2;
+                transform: translateY(-3px);
+            }
+
+        .alert-danger {
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            padding: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+
+</head>
+<body>
+
+    <div class="container mt-5 pt-5">
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-4 col-md-6">
+
+                <div class="card">
+                    <div class="card-header">
+                        Iniciar Sesion
+                    </div>
+                    <div class="card-body">
+
+                        <form asp-controller="Inicio" asp-action="IniciarSesion" method="post">
+
+                            <input class="form-control mb-3" type="text" placeholder="Correo" required name="correo" />
+                            <input class="form-control mb-3" type="password" placeholder="Contraseña" required name="clave" />
+                            <div class="d-grid gap-2 mb-3">
+                                <button class="btn btn-primary" type="submit">Iniciar Sesion</button>
+                            </div>
+                            @if (ViewData["Mensaje"] != null)
+                            {
+                                
+                                <div class="form-group">
+                                    <div class="alert alert-danger" role="alert">
+                                        @ViewData["Mensaje"]
+                                    </div>
+                                </div>
+                            }
+                            ¿No tienes una cuenta? <a href="@Url.Action("Registrarse","Inicio")"> Registraste!</a>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
